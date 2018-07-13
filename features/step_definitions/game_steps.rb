@@ -1,10 +1,15 @@
 # encoding: UTF-8
 
 Quando("começo um novo jogo") do
-   game = Game.new
-   game.start
+   #para começar um jogo executando o binário forca, usamos o step definition 
+    #"When I run 'command' interactively" do aruba
+   steps %{
+       When I run 'forca' interactively
+   }
 end
   
-Então("vejo na tela:") do |string|
-    pending # Write code here that turns the phrase above into concrete actions
+Então("vejo na tela:") do |text|
+    steps %{
+        Then the stdout should contain "#{text}"
+    }
 end

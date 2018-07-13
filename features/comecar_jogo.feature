@@ -1,4 +1,5 @@
 #language: pt
+#12:38
 
 Funcionalidade: Começar jogo
     Para poder passar o tempo
@@ -14,4 +15,4 @@ Cenário: Começo de novo jogo com sucesso
     Bem vindo ao jogo da força!
     """
 
-    
+
