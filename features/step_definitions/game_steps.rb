@@ -18,6 +18,12 @@ Quando("escolho que a palavra a ser sorteada deverá ter {string} letras") do |n
       When I type "#{number_of_letters}"
   }   
 end
+
+Quando("termino o jogo") do
+  steps %{
+    When I type "fim"
+  }
+end
   
 Então("o jogo termina com a seguinte mensagem na tela:") do |text|
     #esse step definition verifica se um texto foi impresso no STDOUT e também verifica se o exit status do processo

@@ -1,5 +1,5 @@
 #language: pt
-
+#I'm pag 145
 
 Funcionalidade: Começar jogo
     Para poder passar o tempo
@@ -10,6 +10,7 @@ Cenário: Começo de novo jogo com sucesso
     Ao começar o jogo, é mostrada a mensagem inicial para o jogador.
 
     Quando começo um novo jogo
+    E termino o jogo
     Então o jogo termina com a seguinte mensagem na tela:
     """
     Bem vindo ao jogo da força!
@@ -24,6 +25,7 @@ Cenário: Sorteio da palavra com sucesso
 
     Dado que comecei um jogo 
     Quando escolho que a palavra a ser sorteada deverá ter "4" letras
+    E termino o jogo
     Então o jogo termina com a seguinte mensagem na tela:
     """
     - - - -

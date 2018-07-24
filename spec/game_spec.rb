@@ -6,16 +6,20 @@ require 'game'
 describe Game do 
     #definição de todos os colaboradores do objeto  sob teste no começo do teste usando let . 
      #Mostra as dependência desse objeto
-    let(:output) { double("output") }
+            #let(:output) { double("output") }
+            #let(:input)  { double("input") }
+    #refatora os dois códigos acima para o let abaixo para tirar a complexidade um pouco
+    #ui user interface
+    let(:ui) { double("ui").as_null_object }
+    subject(:game) { Game.new(ui) }
 
-    subject(:game) { Game.new(output) }
 
     describe "#start" do
         # ve se o objeto game chama o metodo puts da sua dependência quando o método game.start é executado.
         it "prints the initial message" do
             initial_message = "Bem vindo ao jogo da forca!"
             #verificamos se o método start imprimiu na tela a mensagem inicial do jogo(fase verificação do teste)
-            output.should_receive(:puts).with(initial_message)
+            ui.should_receive(:write).with(initial_message)
 
             #depois chamamos o método start(fase de exercício do teste)
             game.start
@@ -28,15 +32,26 @@ describe Game do
            game.should_not be_ended
         end
     end
-
+    #teste abaixo verifica se o jogo pergunta pro jogador o tamanho da palavra a ser sorteada
     describe "#next_step" do
         context "when the game just started" do 
-            it "ask the player for length of the word to be raffled" do
+            it "asks the player for length of the word to be raffled" do
                 question = "Qual o tamanho da palavra a ser sorteada?"
-                output.should_receive(:puts).with(question)
-
+                ui.should_receive(:write).with(question)
+                #verificar se o jogo está lendo o tamanho da palavra que o jogador irá digitar
+                ui.should_receive(:read)
+                
                 game.next_step
             end
+        end
+        it "finishes the game when the player asks to" do
+            player_input = "fim"
+
+            ui.stub(read: player_input)
+
+            game.next_step
+
+            game.should be_ended
         end
     end
 end
